@@ -1,0 +1,167 @@
+public class CandyMachine
+{
+   //Main method
+    public static void main(String[] args)
+   {   
+        
+     System.out.println("Thank you for your purchase.");  
+   }
+   //Sells the product
+   public void sellProduct(Dispenser product, CashRegister amount)
+   {
+       int amountIn = 0;
+       int price, amountRequired;
+       if(product.getCount() < 0)
+       {
+           throw new RuntimeException("This is out of stock");
+       }
+       else
+       {
+           price = product.getProductCost();
+           amountRequired = price - amountIn;
+        }
+       amount.acceptAmount(amountIn);
+       product.makeSale();
+   }
+}
+
+
+
+public class Dispenser
+{
+    private int numberOfItems;   
+    private int cost;   
+ 
+        //Default constructor
+    public Dispenser()
+    {
+         numberOfItems = 50;
+         cost = 50;
+    }
+ 
+        //Constructor with parameters
+    public Dispenser(int setNoOfItems, int setCost)
+    {
+         if (setNoOfItems <= 0)
+         {
+             throw new RuntimeException("Your number of items must be greater than zero.");
+         }
+         else
+         {
+             numberOfItems = setNoOfItems;
+         }
+ 
+         if (setCost <= 0)
+         {
+             throw new RuntimeException("Your cost must be greater than zero.");
+         }
+         else
+         {
+              cost = setCost;
+         }
+    }
+ 
+        //number of items in the dispenser 
+    public int getCount()
+    {
+         return numberOfItems;
+    }
+ 
+        //cost of the item
+    public int getProductCost()
+    {
+         return cost;
+    }
+ 
+        //Subtracts the number of items by one
+    public void makeSale()
+    {
+        numberOfItems--;
+    }
+}
+
+
+
+public class CashRegister
+{
+    private int cashOnHand;
+ 
+        //Default constructor
+    public CashRegister()
+    {
+        cashOnHand = 500;
+    }
+ 
+        //Constructor with parameters
+    public CashRegister(int cashIn)
+    {
+       if (cashIn >= 0)
+       {
+             cashOnHand = cashIn;
+       }
+       else
+       {
+          cashOnHand = 500;
+        }
+    }
+ 
+        //current amount in the cash register
+    public int currentBalance()
+    {
+         return cashOnHand;
+    }
+ 
+        //Recieves amount deposited
+    public void acceptAmount(int amountIn)
+    {
+        if(amountIn <= 0)
+        {
+         throw new RuntimeException("The amount going into the register must be greater than zero.");
+        }
+        else
+        {
+            cashOnHand = cashOnHand + amountIn;
+        }
+    }
+}
+
+
+
+public class CandyMachine
+{
+ 
+  public static void main(String[] args)
+  {   
+    CandyMachine cm = new CandyMachine();
+    Dispenser disp = new Dispenser();
+    CashRegister creg = new CashRegister();
+ 
+    System.out.println("Welcome to the candy machine");
+    System.out.println("Price for 1 candy $" + dip.getProductCost());
+ 
+    int amount = Integer.parseInt(System.console()
+      .readLine("How much candy do you want: "));
+ 
+    System.out.println("That will be $" + dip.getProductCost() * amount);
+ 
+    cm.sellProduct(dip, creg);
+ 
+    System.out.println("Thank you for your purchase."); 
+  }
+ 
+  public void sellProduct(Dispenser product, CashRegister amount)
+  {
+    if(product.getCount() < 0)
+    {
+      throw new RuntimeException("This is out of stock");
+    }
+ 
+    int amountIn = Integer.parseInt(System.console()
+      .readLine("Enter money: "));
+ 
+    amount.acceptAmount(amountIn);
+ 
+    product.makeSale();
+  }
+   
+}
