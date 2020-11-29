@@ -1,0 +1,163 @@
+package jobportal11;
+import java.util.Scanner;
+
+class PortalMain {
+
+	public PortalMain() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public static void main(String[] args) {
+		Scanner ob=new Scanner(System.in);
+		Signin_acc w=new Signin_acc();
+		SearchJob q=new SearchJob();
+		previewJobs t=new previewJobs();
+		w.signin();																		//employee signin
+		System.out.print("for searching ob press S,  for previewing job press P");			
+		String n=ob.next();																	//employee job search or job preview selection
+		if(n=="S") { q.seary(); t.selectJob();}												//seary method searches job name,location.position.salary wise andselectjob method selects job
+		else if (n=="P") {t.previews(); t.selectJob();}										//previews method lets employee preview jobs and selectobs lets hime selct the jobs
+	}
+	
+
+}
+
+		class Signin_acc{
+			String S_usrname="kaiser";    //employee signin
+			String S_pass="54321"	;	
+			Scanner s=new Scanner(System.in);
+			
+			String R=s.next();
+			String T=s.next();
+			void signin() {
+				System.out.println("enter usename and pass for signin");
+
+				if(R==S_usrname)
+					if(T==S_pass)
+					{System.out.print("hello user,welcome to your account");}
+					}
+				}
+		
+		class SearchJob{													//search and show jobs class according to the sorted order below
+			
+			 int i;
+			   
+			    String valtoSearch;
+			    
+			    Scanner s=new Scanner(System.in);
+			    String name[]={"abc","riverdale","rivalution","sky&sons","coldbeans"};
+			    String position[]={"marketing_head","HR","cashier","CCO"}; 
+			    String location[]={"rampura","uttara"};
+			    String salary[]={"20000","30000","40000"};
+			    
+			   void seary(){
+				insideSystemsSearch l=new insideSystemsSearch();
+				previewJobs p=new previewJobs();
+			    int x=s.nextInt();
+			   switch(x)
+			   {
+			       //System.out.println("Enter:");
+			       //mh();
+			       
+			           case 1:{
+			            valtoSearch=s.next();
+			             for (i=0; i<name.length; i++) 
+			         {
+			            if(valtoSearch.compareTo(name[i])==0)
+			            {
+			                System.out.println(name[i]); 
+			                switch(i) {case 0 :l.job1();
+			                case 1 :l.job2();
+			                case 2 :l.job3();						
+			                case 3 :l.job4();
+			                case 4 :l.job5();
+			                }
+			            break;
+			            }
+			         }break;
+			           }
+			  case 2: {
+			  valtoSearch=s.next();
+			             for (i=0; i<position.length; i++) 
+			         {
+			            if(valtoSearch.compareTo(position[i])==0)
+			            {
+			                System.out.println(position[i]);
+			                switch(i) {case 0 :l.job1();l.job2();
+			                case 1 :l.job3();						
+			                case 2 :l.job4();
+			                case 3 :l.job5();}
+			            break;
+			            }
+			         }break;
+			         }       
+			  case 3:{
+			      valtoSearch=s.next();
+			             for (i=0; i<location.length; i++) 
+			         {
+			            if(valtoSearch.compareTo(location[i])==0)
+			            {
+			                System.out.println(location[i]);
+			                System.out.println(position[i]);
+			                switch(i) {case 0 :l.job1();l.job2();l.job3();
+			                case 1 :l.job4();	l.job5();					
+			                }
+			            break;
+			            }
+			         }break;
+			  }
+			  case 4:{
+			      valtoSearch=s.next();
+			             for (i=0; i<salary.length; i++) 
+			         {
+			            if(valtoSearch.compareTo(salary[i])==0)
+			            {
+			                System.out.println(salary[i]);
+			                switch(i) {case 0 :l.job5();
+			                case 1 :l.job3();l.job4();						
+			                case 2 :l.job1();l.job2();}
+			                
+			            break;
+			            }
+			         }break;
+			  }
+			  default:{}
+			  
+			  p.selectJob();
+			  
+			}			
+			   }}
+		
+		
+		class previewJobs extends SearchJob{
+			void previews() {
+			System.out.println("1."+name[0]+","+position[0]+","+location[0]+","+salary[2]); //jobs sorted according to name,location,position salary
+			System.out.println("2."+name[1]+","+position[0]+","+location[0]+","+salary[2]);
+			System.out.println("3."+name[2]+","+position[1]+","+location[0]+","+salary[1]);
+			System.out.println("4."+name[3]+","+position[2]+","+location[1]+","+salary[1]);
+			System.out.println("5."+name[4]+","+position[3]+","+location[1]+","+salary[0]);}
+			void selectJob() {
+			System.out.println("select the job you want to apply for");
+				while(true)
+				{
+					int x=s.nextInt();
+					System.out.println(x);
+					System.out.println("if you want to apply for another job press");
+					String k=s.next();
+					if(k=="Y")continue;
+					else break;
+				}
+			}
+		}
+		
+		
+		class insideSystemsSearch extends SearchJob {
+			
+		void job1() {System.out.println("1."+name[0]+","+position[0]+","+location[0]+","+salary[2]);} //void methods called in the search to show jobs 
+		void job2() {System.out.println("2."+name[1]+","+position[0]+","+location[0]+","+salary[2]);}
+		void job3() {System.out.println("3."+name[2]+","+position[1]+","+location[0]+","+salary[1]);}
+		void job4() {System.out.println("4."+name[0]+","+position[2]+","+location[1]+","+salary[1]);}
+		void job5() {System.out.println("1."+name[0]+","+position[3]+","+location[1]+","+salary[0]);}
+			   }
+						
+		
